@@ -39,25 +39,4 @@ public class StudentRestController {
         return theStudents.get(studentId);
     }
 
-    // add an exception handler using @ExceptionHandler
-
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException ex) {
-        StudentErrorResponse error = new StudentErrorResponse();
-        error.setStatus(HttpStatus.NOT_FOUND.value());
-        error.setMessage("Student id not found");
-        error.setTimeStamp(System.currentTimeMillis());
-
-        return new ResponseEntity<>(error, org.springframework.http.HttpStatus.NOT_FOUND);
-    }
-
-    // add another exception handler ... to catch any exception (catch all)
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException(Exception ex) {
-        StudentErrorResponse error = new StudentErrorResponse();
-        error.setStatus(HttpStatus.BAD_REQUEST.value());
-        error.setMessage("Student id not found");
-        error.setTimeStamp(System.currentTimeMillis());
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-    }
 }
